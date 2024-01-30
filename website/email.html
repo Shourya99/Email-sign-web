@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Email Signature</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f2f2f2;
+            color: black;
+        }
+
+        #header-bar {
+            background-color: #faf8f8;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            
+        }
+
+        #logo {
+            max-height: 80px;
+        }
+
+        #side-panel {
+            height:100vh;
+            width: 250px;
+            background-color: #faf8f8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 70px;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+            color: #333;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border-radius: 2%;
+            margin-bottom: 50px;
+        }
+
+        #side-panel:hover {
+            width: calc(100vw / 5); 
+            background-color: white;
+            color: #323232; 
+        }
+
+        #main-content {
+            margin-left: 250px;
+            padding: 20px;
+            margin-top: 50px; /* Adjusted to accommodate the fixed header */
+        }
+
+        #side-panel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: flexbox;
+        }
+
+        #side-panel a:hover {
+            color: #555;
+        }
+
+        #side-panel form {
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+
+        #side-panel label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        #side-panel input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        #side-panel button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #card {
+            margin-top: 50px;
+            margin-left: 550px;
+            padding: 20px;
+            background: var(--Grey-Colours-White,#fff);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.896);
+            max-width: 640px;
+            height: 300px;
+            text-align: left;
+            border-radius: 24px;
+            margin-bottom: 50px;
+            position: relative; /* Add position relative to use absolute positioning */
+        }
+
+        #employee-name {
+            color: #303030;
+            font-family: Asap;
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-bottom: 10px; /* Added margin bottom for spacing */
+        }
+
+        #employee-designation {
+            color: #303030;
+            font-family: Comme;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin-bottom: 10px; /* Added margin bottom for spacing */
+        }
+
+        
+
+        #card-right-smedia {
+            width: 200px;
+            height: 140.212px;
+            flex-shrink: 0;
+            position: absolute;
+            top: 200px; /* Adjust position from top */
+            right: 20px; /* Adjust position from right */
+        }
+
+        #card-right-smedia img {
+            margin-right: 20px; /* Adjust spacing between images */
+            flex-shrink: 0;
+            height: 43px;
+            border-radius: 100px;
+            background: var(--Grey-Colors-F0F0F0, #F0F0F0);
+        }
+
+        #logo-container {
+            position: absolute;
+            top: 10px; /* Adjust the distance from the top */ 
+            right: 10px; /* Adjust the distance from the right */
+        }
+        #logo-container img {
+            max-width: 300px; /* Adjust the maximum width of the logo */
+            max-height: 300px;
+        }
+
+
+        #employee-photo {
+            width: 90px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: auto; /* Move the employee photo to the right */
+            margin-right: 20px; /* Adjust spacing */
+            margin-bottom: 5px;
+        }
+
+        #copy-button {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+    </style>
+</head>
+<body>
+<div id="header-bar">
+    <h1><img id="logo" src="./Logogif.gif" alt="Logo"></h1>
+</div>
+
+<div id="side-panel">
+    <h3>   Create New Email Signature</h2>
+
+    <form id="signature-form">
+        <label for="photo">Photo Upload</label>
+        <input type="file" id="photo" name="photo" accept="image/*" onchange="readURL(this)">
+
+        <label for="fullName">Employee Name</label>
+        <input type="text" id="fullName" name="Employee Name">
+
+        <label for="designation">Designation</label>
+        <input type="text" id="designation" name="designation">
+
+        <label for="department">Department</label>
+        <input type="text" id="department" name="department">
+
+        <label for="whatsapp">WhatsApp Number</label>
+        <input type="text" id="whats" name="whatsapp" pattern="\d*" title="Please enter only numeric values">
+
+        <label for="linkedin">LinkedIn ID</label>
+        <input type="url" id="linkedin" name="linkedin">
+
+        <label for="instagram">Instagram ID</label>
+        <input type="url" id="insta" name="instagram">
+    </form>
+</div>
+
+<div id="main-content">
+    <h2>Welcome!!</h2>
+</div>
+
+<div id="card">
+    <div id="employee-photo-container">
+        <img id="employee-photo" src="./user.png" alt="Employee Photo">
+    </div>
+    <p id="employee-name"><strong></strong><span id="employee-name-value"></span></p>
+    <p id="employee-designation"><strong>Designation:</strong> <span id="employee-designation-value"></span></p>
+    <p id="employee-whatsapp"><strong>WhatsApp:</strong> <span id="employee-whatsapp-value"></span></p>
+    <p id="employee-linkedin"><strong>Linkedin Id:</strong> <span id="employee-linkedin-value"></span></p>
+    <p id="employee-instagram"><strong>Instagram Id:</strong> <span id="employee-instagram-value"></span></p>
+
+    <div id="logo-container">
+        <img src="./Logogif.gif" alt="Your Logo">
+    </div>
+
+    <!-- Container inside the card on the right side -->
+    <div id="card-right-smedia">
+        <a href="https://www.inspirexp.com"><img src="./web.png" alt="Website image"></a>
+        <a href="mailto:hello@inspirexp.com"><img src="./emailimage.png" alt="Email image"></a>
+        <a href="https://api.whatsapp.com/send?phone=917044703370"><img src="./w.png" alt="WhatsApp image"></a>
+        <a href="https://www.youtube.com/@_InspireXP"><img src="./youtube.png" alt="YouTube image"></a>
+        <a href="https://www.linkedin.com/company/inspirexp/"><img src="./linkedin.png" alt="LinkedIn image"></a>
+        <a href="https://www.instagram.com/_inspirexp/"><img src="./instagram.png" alt="Instagram image"></a>
+    </div>
+</div>
+<button id="copy-button" onclick="copySignature()">Copy Signature</button>
+<script>
+    document.getElementById('signature-form').addEventListener('input', updateCard);
+
+    function updateCard() {
+        const fullName = document.getElementById('fullName').value;
+        const department = document.getElementById('department').value;
+        const designation = document.getElementById('designation').value;
+        const whatsapp = document.getElementById('whats').value;
+        const linkedin = document.getElementById('linkedin').value;
+        const instagram = document.getElementById('insta').value;
+        const photo = document.getElementById('photo').files[0];
+
+        // Combine department and designation
+        const position = `${designation} (${department})`;
+
+        // Update card content
+        document.getElementById('employee-name-value').innerText = fullName;
+        document.getElementById('employee-designation-value').innerText = position; // Use combined position
+        document.getElementById('employee-whatsapp-value').innerText = whatsapp;
+        
+        // Check if LinkedIn ID is provided and update card accordingly
+        if (linkedin) {
+            document.getElementById('employee-linkedin').style.display = 'block';
+            document.getElementById('employee-linkedin-value').innerText = linkedin;
+        } else {
+            document.getElementById('employee-linkedin').style.display = 'none';
+        }
+
+        // Check if Instagram ID is provided and update card accordingly
+        if (instagram) {
+            document.getElementById('employee-instagram').style.display = 'block';
+            document.getElementById('employee-instagram-value').innerText = instagram;
+        } else {
+            document.getElementById('employee-instagram').style.display = 'none';
+        }
+
+        // Update employee photo
+        if (photo) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('employee-photo').src = e.target.result;
+            };
+            reader.readAsDataURL(photo);
+        }
+
+        // Show the card
+        document.getElementById('card').style.display = 'block';
+    }
+
+    function copySignature() {
+        // Update the card content with the latest form values
+        updateCard();
+
+        // Get the HTML content of the card
+        const cardContent = document.getElementById('card').outerHTML;
+
+        // Create a textarea to hold the HTML content
+        const textarea = document.createElement('textarea');
+        textarea.value = cardContent;
+        document.body.appendChild(textarea);
+
+        // Select the text in the textarea and copy it to the clipboard
+        textarea.select();
+        document.execCommand('copy');
+
+        // Remove the textarea
+        document.body.removeChild(textarea);
+
+        // Alert the user
+        alert('Signature HTML copied to clipboard!');
+    }
+</script>
+</body>
+</html>
